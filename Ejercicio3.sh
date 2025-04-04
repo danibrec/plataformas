@@ -1,5 +1,5 @@
 #!/bin/bash
-ditorio="/mnt/c/Users/dbren/Downloads"
+directorio="/mnt/c/Users/dbren/Downloads"
 log="/mnt/c/Users/dbren/Downloads/Recuento.txt"
 
 echo "Monitoreando el directorio: $directorio"
