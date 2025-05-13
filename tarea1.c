@@ -21,10 +21,25 @@ int verfBinCuad(FILE *archivo, int *tamano) {
 int encDiagonalLarga(int **matriz, int tamano) {
     int maxCon = 0;
 
-     for (int col = 0; col < tamano; col++) {
+for (int col = 0; col < tamano; col++) {
         int i = 0, j = col;
         int contador = 0;
-        while (i < tamano && j < tamano) {
+        while (i < tamano && j >= 0) {
+            if (matriz[i][j] == 1)
+                contador++;
+            else
+                contador = 0;
+            if (contador > maxCon)
+               maxCon = contador;
+            i++;
+            j--;
+        }
+    }
+
+    for (int fila = 1; fila < tamano; fila++) {
+        int i = fila, j = tamano - 1;
+        int contador = 0;
+        while (i < tamano && j >= 0) {
             if (matriz[i][j] == 1)
                 contador++;
             else
@@ -32,12 +47,13 @@ int encDiagonalLarga(int **matriz, int tamano) {
             if (contador > maxCon)
                 maxCon = contador;
             i++;
-            j++;
+            j--;
         }
     }
 
-     return maxCon;
+    return maxCon;
 }
+
 
 void imprMatriz(int **matriz, int tamano) {
     for (int i = 0; i < tamano; i++) {
@@ -76,9 +92,49 @@ int main() {
 
     fclose(archivo);
 
+printf("La matriz utilizada corresponde:\n");
+imprMatriz(matriz, tamano);
+
+int main() {
+
+    FILE *archivo = fopen("matriz.txt", "r");
+    if (!archivo) {
+        printf("Error al abrir el archivo.\n");
+        return 1;
+    }
+
+    int tamano;
+    if (!verfBinCuad(archivo, &tamano)) {
+        printf("El archivo no contiene una matriz binaria y cuadrada válida.\n");
+        fclose(archivo);
+        return 1;
+    }
+
+    rewind(archivo);
+    fscanf(archivo, "%d", &tamano);
+
+    int **matriz = malloc(tamano * sizeof(int *));
+    for (int i = 0; i < tamano; i++)
+        matriz[i] = malloc(tamano * sizeof(int));
+
+    for (int i = 0; i < tamano; i++)
+        for (int j = 0; j < tamano; j++)
+            fscanf(archivo, "%d", &matriz[i][j]);
+
+    fclose(archivo);
+
+printf("La matriz utilizada corresponde:\n");
+imprMatriz(matriz, tamano);
 
 int diagonal_mas_larga = encDiagonalLarga(matriz, tamano);
 printf("La secuencia de 1s más grande en dirección paralela a la diagonal secundaria es: %d\n", diagonal_mas_larga);
 
+for (int i = 0; i < tamano; i++)
+    free(matriz[i]);
+free(matriz);
+
+
     return 0;
+    }
+
 }
