@@ -1,0 +1,25 @@
+El script de este programa en C, toma un arreglo y lo acomoda mediante dos algoritmos: Bubble sort y Selection sort. 
+Bubble sort, toma elementos adyacentes y compara si están en el orden correcto, para luego intercambiarlos si esto no se cumple.
+Los elementos más grandes terminan ocupando un lugar más adelante que el otro.
+
+En cambio, el selection sort, busca no solo al más grande, sino al más pequeño a la vez y acomodando la lista repitiendo el algoritmo.
+Se compara posteriormente, el tiempo de rendimiento de ambos algoritmos, con el fin de ver cual de ambos, logra el acomodo en menor tiempo.
+
+Para arreglo de diez:
+Tiempo de rendimiento Bubble Sort: 0.00001 segundos
+Tiempo de rendimiento Selection Sort: 0.00001 segundos
+
+Para arreglo de 100:
+Tiempo de rendimiento Bubble Sort: 0.00013 segundos
+Tiempo de rendimiento Selection Sort: 0.00006 segundos
+
+Para arreglo de 1000:
+Tiempo de rendimiento Bubble Sort: 0.02348 segundos
+Tiempo de rendimiento Selection Sort: 0.01605 segundos
+
+Para arreglo de 10000:
+Tiempo de rendimiento Bubble Sort: 0.36083 segundos
+Tiempo de rendimiento Selection Sort: 0.12607 segundos
+
+Basado en los datos reportados, Selecction Sort resulta hacer un mejor acomodo en la mayoría de los casos requeridos. Esto puede deberse a que Selection Sort realiza dos acomodas a la vez,
+mientras que Bubble Sort solo toma los datos mayores como característica de estudio.
